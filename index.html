@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新年快乐！</title>
+    <style>
+        body { 
+            margin: 0; 
+            /* 使用了漂亮的桃粉色渐变背景 */
+            background: #fff9e6; 
+            color: #5d4037; 
+            text-align: center; 
+            font-family: 'Microsoft YaHei', sans-serif; 
+            height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+        }
+        .container { z-index: 10; cursor: pointer; }
+        img { 
+            width: 180px; 
+            height: 180px; 
+            border-radius: 50%; 
+            border: 5px solid white; /* 白色边框在粉色背景下很高级 */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
+            margin-bottom: 20px; 
+        }
+        h1 { 
+            font-size: 2.8em; 
+            color: #d35400; 
+            text-shadow: 2px 2px 10px rgba(216, 27, 96, 0.3); 
+            margin: 10px 0;
+        }
+        p { 
+            font-size: 1.2em;
+            color: #ad1457; 
+            font-weight: bold;
+        }
+        .hint { 
+            font-size: 0.9em; 
+            color: #8d6e63; 
+            margin-top: 30px; 
+            background: rgba(255, 255, 255, 0.3); 
+            padding: 10px 25px; 
+            border-radius: 30px; 
+            backdrop-filter: blur(5px);
+        }
+    </style>
+</head>
+<body>
+    <audio id="myAudio" src="黄子弘凡 - 是我，也是我们 (Live).mp3" loop></audio>
+
+    <div class="container" onclick="startShow()">
+        <img src="huangzi.jpg" alt="点击开启惊喜">
+        <h1>2026 新年快乐</h1>
+        <p>祝 黄子弘凡最可爱的小粉丝 新的一年和偶像一样运气爆棚</p>
+        <div class="hint">🌸 点击照片 开启惊喜 🌸</div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+        function startShow() {
+            // 播放音乐
+            document.getElementById('myAudio').play();
+            
+            // 烟花颜色调整为更配粉色的彩色（粉、白、金）
+            var colors = ['#ff69b4', '#ffffff', '#ffd700', '#ffb6c1'];
+            
+            var end = Date.now() + (5 * 1000);
+            (function frame() {
+                confetti({ particleCount: 3, angle: 60, spread: 55, origin: { x: 0 }, colors: colors });
+                confetti({ particleCount: 3, angle: 120, spread: 55, origin: { x: 1 }, colors: colors });
+                if (Date.now() < end) { requestAnimationFrame(frame); }
+            }());
+            
+            confetti({ 
+                particleCount: 150, 
+                spread: 100, 
+                origin: { y: 0.6 },
+                colors: colors
+            });
+        }
+    </script>
+</body>
+</html>
